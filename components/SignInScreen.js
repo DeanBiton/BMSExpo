@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, useWindowDimensions } from 'react-native';
 import logo from '../assets/images/logo.jpeg';
 import CustomInput from './CustomInput/CustomInput';
+import CustomButton from './CustomButton/CustomButton';
 
 function SignInScreen() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   const {height} = useWindowDimensions();
+
+  const onSignInPress = () => {
+    console.warn("Sign in")
+  }
 
   return (
     <View style={styles.root}>
@@ -14,8 +22,19 @@ function SignInScreen() {
         resizeMode="contain"  
       />
 
-      <CustomInput />
-      <CustomInput />
+      <CustomInput 
+        placeholder="Username" 
+        value={username} 
+        setValue={setUsername}
+      />
+      <CustomInput 
+        placeholder="Password" 
+        value={password} 
+        setValue={setPassword}
+        secureTextEntry
+      />
+
+      <CustomButton text="Sign In" onPress={onSignInPress} />
     </View>
   );
 }
